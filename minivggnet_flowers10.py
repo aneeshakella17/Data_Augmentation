@@ -51,7 +51,7 @@ checkpoint = ModelCheckpoint(weights, monitor = "val_loss", save_best_only=True,
 callbacks = [TrainingMonitor(picpath, jsonPath=jsonPath)];
 
 print("[INFO] training network ...");
-H = model.fit_generator(aug.flow(trainX, trainY, batch_size=32), validation_data=(testX, testY), steps_per_epoch=len(trainX)//32, epochs = 100, verbose = 1);
+H = model.fit_generator(aug.flow(trainX, trainY, batch_size=32), validation_data=(testX, testY), steps_per_epoch=len(trainX)//32, callbacks = callbacks, epochs = 100, verbose = 1);
 
 print("[INFO] evaluating network ... ");
 predictions = model.predict(testX, batch_size = 32);
