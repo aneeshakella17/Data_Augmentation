@@ -1,4 +1,3 @@
-import imutils
 import cv2
 
 
@@ -13,10 +12,10 @@ class AspectAwarePreprocessor:
         dW, dH = 0, 0;
 
         if w < h:
-            image = imutils.resize(image, width=self.width, inter= self.inter);
+            image = cv2.resize(image, width=self.width, interpolationr= self.inter);
             dH = int((image.shape[0] - self.height)/2.0);
         else:
-            image = imutils.resize(image, height = self.height, inter = self.inter)
+            image = cv2.resize(image, height = self.height, interpolation = self.inter)
             dW = int((image.shape[1] - self.width)/2.0);
 
         (h, w) = image.shape[:2];
