@@ -12,18 +12,22 @@ from sklearn.model_selection import train_test_split
 import os
 import numpy as np;
 
-dataset_folder = "flowers17/"
+dataset_folder = "flowers17/images/"
 weights = "/artifacts/minivggnet.hdf5";
 jsonPath = "/artifacts/flowers.json"
 picpath = "/artifacts/graph.jpg"
 
-imagePaths = list(os.listdir(dataset_folder));
-classNames = [pt.split(os.path.sep)[-2]for pt in imagePaths]
-classNames = [str(x) for x in np.unique(classNames)];
+classNames = list(os.listdir(dataset_folder));
+imagePaths = [];
+for _class in classNames:
+    new_folder_name = dataset_folder + _class + '/';
+    imagePaths.extend([new_folder_name + name for name in os.listdir(new_folder_name)]);
+
+
 
 aap = AspectAwarePreprocessor(64, 64);
 iap = ImageToArrayPreprocessor();
-
+print imagePaths;
 
 sdl = SimpleDatasetLoader(preprocessors=[aap, iap]);
 (data, labels) = sdl.load(imagePaths, verbose=500);

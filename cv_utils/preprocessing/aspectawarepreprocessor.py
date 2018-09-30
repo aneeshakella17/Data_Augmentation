@@ -12,10 +12,10 @@ class AspectAwarePreprocessor:
         dW, dH = 0, 0;
 
         if w < h:
-            image = cv2.resize(image, width=self.width, interpolationr= self.inter);
+            image = cv2.resize(image, (h, self.width), interpolation = self.inter);
             dH = int((image.shape[0] - self.height)/2.0);
         else:
-            image = cv2.resize(image, height = self.height, interpolation = self.inter)
+            image = cv2.resize(image, (self.height, w),  interpolation = self.inter)
             dW = int((image.shape[1] - self.width)/2.0);
 
         (h, w) = image.shape[:2];
