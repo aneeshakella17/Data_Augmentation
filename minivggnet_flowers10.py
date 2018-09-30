@@ -10,7 +10,6 @@ from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 import os
-import numpy as np;
 
 dataset_folder = "flowers17/images/"
 weights = "/artifacts/minivggnet.hdf5";
@@ -27,7 +26,6 @@ for _class in classNames:
 
 aap = AspectAwarePreprocessor(64, 64);
 iap = ImageToArrayPreprocessor();
-print imagePaths;
 
 sdl = SimpleDatasetLoader(preprocessors=[aap, iap]);
 (data, labels) = sdl.load(imagePaths, verbose=500);
