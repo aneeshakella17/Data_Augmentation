@@ -9,7 +9,6 @@ from keras.preprocessing.image import ImageDataGenerator
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
-from imutils import paths
 import os
 import numpy as np;
 
@@ -18,7 +17,7 @@ weights = "/artifacts/minivggnet.hdf5";
 jsonPath = "/artifacts/flowers.json"
 picpath = "/artifacts/graph.jpg"
 
-imagePaths = list(paths.list_images(dataset_folder));
+imagePaths = list(os.listdir(dataset_folder));
 classNames = [pt.split(os.path.sep)[-2]for pt in imagePaths]
 classNames = [str(x) for x in np.unique(classNames)];
 
